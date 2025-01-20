@@ -1,10 +1,10 @@
 import { ProfileForm } from "@/components/ProfileForm";
+import { MysticalBackground } from "@/components/ui/mystical-background";
 
 const ProfilePage = () => {
   return (
-    <div className="min-h-screen mystical-bg relative overflow-hidden">
-      <div className="stars" />
-      <div className="container mx-auto px-4 py-16 relative z-10">
+    <MysticalBackground>
+      <div className="container mx-auto px-4 py-16">
         <div className="max-w-2xl mx-auto text-center space-y-8">
           <h1 className="text-4xl font-bold font-cinzel text-primary mb-8">
             Create Your Profile
@@ -14,7 +14,7 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </MysticalBackground>
   );
 };
 
