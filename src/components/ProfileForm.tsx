@@ -7,12 +7,12 @@ import { useNavigate } from "react-router-dom";
 export const ProfileForm = () => {
   const [fullName, setFullName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
+  const [birthLocation, setBirthLocation] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Store in localStorage for now
-    localStorage.setItem("currentProfile", JSON.stringify({ fullName, dateOfBirth }));
+    localStorage.setItem("currentProfile", JSON.stringify({ fullName, dateOfBirth, birthLocation }));
     navigate("/zodiac");
   };
 
@@ -40,9 +40,30 @@ export const ProfileForm = () => {
           className="bg-white/10 border-white/20 text-white"
         />
       </div>
-      <Button type="submit" className="w-full text-primary-foreground bg-primary hover:bg-primary/90">
-        Continue
-      </Button>
+      <div className="space-y-2">
+        <Label htmlFor="birthLocation" className="text-lg">Birth Location</Label>
+        <Input
+          id="birthLocation"
+          required
+          value={birthLocation}
+          onChange={(e) => setBirthLocation(e.target.value)}
+          className="bg-white/10 border-white/20 text-white"
+          placeholder="Enter your birth location"
+        />
+      </div>
+      <div className="flex justify-between">
+        <Button 
+          type="button" 
+          onClick={() => navigate(-1)}
+          variant="outline"
+          className="border-white/20 text-white hover:bg-white/10"
+        >
+          Back
+        </Button>
+        <Button type="submit" className="text-primary-foreground bg-primary hover:bg-primary/90">
+          Continue
+        </Button>
+      </div>
     </form>
   );
 };

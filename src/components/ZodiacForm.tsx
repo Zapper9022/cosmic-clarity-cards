@@ -10,22 +10,27 @@ import {
 } from "@/components/ui/select";
 import { useNavigate } from "react-router-dom";
 
-const zodiacSigns = [
+const horoscopeSigns = [
   "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
   "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
 ];
 
+const chineseZodiacSigns = [
+  "Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake",
+  "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig"
+];
+
 export const ZodiacForm = () => {
-  const [zodiacSign, setZodiacSign] = useState("");
+  const [horoscopeSign, setHoroscopeSign] = useState("");
+  const [chineseZodiac, setChineseZodiac] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const currentProfile = JSON.parse(localStorage.getItem("currentProfile") || "{}");
-    const updatedProfile = { ...currentProfile, zodiacSign };
+    const updatedProfile = { ...currentProfile, horoscopeSign, chineseZodiac };
     localStorage.setItem("currentProfile", JSON.stringify(updatedProfile));
     
-    // Save to profiles list
     const profiles = JSON.parse(localStorage.getItem("profiles") || "[]");
     profiles.push(updatedProfile);
     localStorage.setItem("profiles", JSON.stringify(profiles));
@@ -36,13 +41,13 @@ export const ZodiacForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-md">
       <div className="space-y-2">
-        <Label htmlFor="zodiacSign" className="text-lg">Select Your Zodiac Sign</Label>
-        <Select required onValueChange={setZodiacSign}>
+        <Label htmlFor="horoscopeSign" className="text-lg">Select Your Horoscope Sign</Label>
+        <Select required onValueChange={setHoroscopeSign}>
           <SelectTrigger className="bg-white/10 border-white/20 text-white">
-            <SelectValue placeholder="Choose your zodiac sign" />
+            <SelectValue placeholder="Choose your horoscope sign" />
           </SelectTrigger>
           <SelectContent>
-            {zodiacSigns.map((sign) => (
+            {horoscopeSigns.map((sign) => (
               <SelectItem key={sign} value={sign.toLowerCase()}>
                 {sign}
               </SelectItem>
@@ -50,9 +55,34 @@ export const ZodiacForm = () => {
           </SelectContent>
         </Select>
       </div>
-      <Button type="submit" className="w-full text-primary-foreground bg-primary hover:bg-primary/90">
-        Complete Profile
-      </Button>
+      <div className="space-y-2">
+        <Label htmlFor="chineseZodiac" className="text-lg">Select Your Chinese Zodiac Sign</Label>
+        <Select required onValueChange={setChineseZodiac}>
+          <SelectTrigger className="bg-white/10 border-white/20 text-white">
+            <SelectValue placeholder="Choose your Chinese zodiac sign" />
+          </SelectTrigger>
+          <SelectContent>
+            {chineseZodiacSigns.map((sign) => (
+              <SelectItem key={sign} value={sign.toLowerCase()}>
+                {sign}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="flex justify-between">
+        <Button 
+          type="button" 
+          onClick={() => navigate(-1)}
+          variant="outline"
+          className="border-white/20 text-white hover:bg-white/10"
+        >
+          Back
+        </Button>
+        <Button type="submit" className="text-primary-foreground bg-primary hover:bg-primary/90">
+          Save Profile
+        </Button>
+      </div>
     </form>
   );
 };

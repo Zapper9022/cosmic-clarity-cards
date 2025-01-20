@@ -1,6 +1,10 @@
 import { FortuneTeller } from "@/components/FortuneTeller";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const FortunePage = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="min-h-screen mystical-bg relative overflow-hidden">
       <div className="stars" />
@@ -11,6 +15,15 @@ const FortunePage = () => {
           </h1>
           <div className="flex justify-center">
             <FortuneTeller />
+          </div>
+          <div>
+            <Button 
+              onClick={() => navigate(-1)}
+              variant="outline"
+              className="border-white/20 text-white hover:bg-white/10"
+            >
+              Back
+            </Button>
           </div>
         </div>
       </div>

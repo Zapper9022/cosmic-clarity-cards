@@ -15,19 +15,12 @@ const Index = () => {
           <p className="text-xl text-white/90">
             Discover your destiny through the ancient wisdom of the stars
           </p>
-          <div className="space-y-4">
+          <div>
             <Button
               onClick={() => navigate("/profile")}
               className="w-full md:w-auto text-primary-foreground bg-primary hover:bg-primary/90"
             >
-              Create New Profile
-            </Button>
-            <Button
-              onClick={() => navigate("/profiles")}
-              variant="outline"
-              className="w-full md:w-auto border-white/20 text-white hover:bg-white/10"
-            >
-              View Saved Profiles
+              Get Started
             </Button>
           </div>
         </div>

@@ -1,13 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
+interface Message {
+  type: 'user' | 'fortune';
+  content: string;
+}
 
 export const FortuneTeller = () => {
+  const [selectedProfile, setSelectedProfile] = useState("");
   const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [profiles, setProfiles] = useState<any[]>([]);
   const { toast } = useToast();
+
+  useEffect(() => {
+    const savedProfiles = JSON.parse(localStorage.getItem("profiles") || "[]");
+    setProfiles(savedProfiles);
+  }, []);
 
   const generateFortune = () => {
     const responses = [
@@ -20,7 +40,12 @@ export const FortuneTeller = () => {
     ];
     
     const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-    setAnswer(randomResponse);
+    setMessages(prev => [...prev, 
+      { type: 'user', content: question },
+      { type: 'fortune', content: randomResponse }
+    ]);
+    setQuestion("");
+    
     toast({
       title: "The spirits have spoken!",
       description: "Your fortune has been revealed.",
@@ -29,34 +54,69 @@ export const FortuneTeller = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!selectedProfile) {
+      toast({
+        title: "Please select a profile",
+        description: "A profile must be selected to receive your fortune.",
+        variant: "destructive"
+      });
+      return;
+    }
     generateFortune();
   };
 
   return (
     <div className="space-y-8 w-full max-w-md">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="question" className="text-lg">Ask Your Question</Label>
+      <div className="space-y-2">
+        <Label htmlFor="profile" className="text-lg">Select Your Profile</Label>
+        <Select required onValueChange={setSelectedProfile}>
+          <SelectTrigger className="bg-white/10 border-white/20 text-white">
+            <SelectValue placeholder="Choose your profile" />
+          </SelectTrigger>
+          <SelectContent>
+            {profiles.map((profile, index) => (
+              <SelectItem key={index} value={index.toString()}>
+                {profile.fullName}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <ScrollArea className="h-[400px] rounded-md border border-white/20 p-4">
+        <div className="space-y-4">
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+            >
+              <div
+                className={`max-w-[80%] rounded-lg p-3 ${
+                  message.type === 'user'
+                    ? 'bg-primary text-white ml-auto'
+                    : 'bg-white/10 text-white'
+                }`}
+              >
+                {message.content}
+              </div>
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="flex gap-2">
           <Input
-            id="question"
-            required
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            className="bg-white/10 border-white/20 text-white"
-            placeholder="What would you like to know?"
+            className="bg-white/10 border-white/20 text-white flex-1"
+            placeholder="Ask your question..."
           />
+          <Button type="submit" className="text-primary-foreground bg-primary hover:bg-primary/90">
+            Ask
+          </Button>
         </div>
-        <Button type="submit" className="w-full text-primary-foreground bg-primary hover:bg-primary/90">
-          Reveal My Fortune
-        </Button>
       </form>
-      
-      {answer && (
-        <div className="p-6 rounded-lg bg-white/5 border border-white/10">
-          <h3 className="text-xl font-cinzel mb-4">The Spirits Say:</h3>
-          <p className="text-lg italic">{answer}</p>
-        </div>
-      )}
     </div>
   );
 };
