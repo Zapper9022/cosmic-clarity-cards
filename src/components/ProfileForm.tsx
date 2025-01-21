@@ -26,7 +26,7 @@ export const ProfileForm = () => {
           required
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-          className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+          className="bg-black/10 border-white/20 text-white placeholder:text-white/50"
           placeholder="Enter your full name"
         />
       </div>
@@ -38,7 +38,7 @@ export const ProfileForm = () => {
           required
           value={dateOfBirth}
           onChange={(e) => setDateOfBirth(e.target.value)}
-          className="bg-white/10 border-white/20 text-white"
+          className="bg-black/10 border-white/20 text-white"
         />
       </div>
       <div className="space-y-2">
@@ -48,7 +48,7 @@ export const ProfileForm = () => {
           required
           value={birthLocation}
           onChange={(e) => setBirthLocation(e.target.value)}
-          className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+          className="bg-black/10 border-white/20 text-white placeholder:text-white/50"
           placeholder="Enter your birth location"
         />
       </div>
@@ -57,12 +57,12 @@ export const ProfileForm = () => {
           type="button" 
           onClick={() => navigate(-1)}
           variant="link"
-          className="text-white"
+          className="text-white hover:text-white/80"
         >
           <ChevronLeft className="me-1 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
           Back
         </Button>
-        <Button type="submit" className="text-primary-foreground bg-primary hover:bg-primary/90">
+        <Button type="submit" className="bg-white text-black hover:bg-white/90">
           Continue
         </Button>
       </div>

@@ -18,7 +18,7 @@ const Index = () => {
           <div>
             <Button
               onClick={() => navigate("/profile")}
-              className="w-full md:w-auto text-primary-foreground bg-primary hover:bg-primary/90"
+              className="w-full md:w-auto bg-white text-black hover:bg-white/90"
             >
               Get Started
             </Button>

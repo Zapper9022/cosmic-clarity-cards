@@ -46,7 +46,7 @@ const ProfilesPage = () => {
               <p className="text-white/90">No profiles found.</p>
               <Button
                 onClick={() => navigate("/profile")}
-                className="text-primary-foreground bg-primary hover:bg-primary/90"
+                className="bg-white text-black hover:bg-white/90"
               >
                 Create New Profile
               </Button>
@@ -56,7 +56,7 @@ const ProfilesPage = () => {
               {profiles.map((profile, index) => (
                 <div
                   key={index}
-                  className="p-6 rounded-lg bg-white/5 border border-white/20 space-y-4"
+                  className="p-6 rounded-lg bg-black/10 border border-white/20 space-y-4"
                 >
                   <h3 className="text-xl font-cinzel text-white">{profile.fullName}</h3>
                   <p className="text-white/90">Born: {new Date(profile.dateOfBirth).toLocaleDateString()}</p>
@@ -70,7 +70,7 @@ const ProfilesPage = () => {
                   <div className="space-x-4">
                     <Button
                       onClick={() => navigate("/fortune")}
-                      className="text-primary-foreground bg-primary hover:bg-primary/90"
+                      className="bg-white text-black hover:bg-white/90"
                     >
                       Get Fortune
                     </Button>
@@ -91,7 +91,7 @@ const ProfilesPage = () => {
             <Button
               onClick={() => navigate(-1)}
               variant="link"
-              className="text-white"
+              className="text-white hover:text-white/80"
             >
               <ChevronLeft className="me-1 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
               Back

@@ -70,10 +70,10 @@ export const FortuneTeller = () => {
       <div className="space-y-2">
         <Label htmlFor="profile" className="text-lg text-white">Select Your Profile</Label>
         <Select required onValueChange={setSelectedProfile}>
-          <SelectTrigger className="bg-white/10 border-white/20 text-white">
-            <SelectValue placeholder="Choose your profile" className="text-white" />
+          <SelectTrigger className="bg-black/10 border-white/20 text-white">
+            <SelectValue placeholder="Choose your profile" />
           </SelectTrigger>
-          <SelectContent className="bg-background border-white/20">
+          <SelectContent className="bg-black border-white/20">
             {profiles.map((profile, index) => (
               <SelectItem 
                 key={index} 
@@ -97,8 +97,8 @@ export const FortuneTeller = () => {
               <div
                 className={`max-w-[80%] rounded-lg p-3 ${
                   message.type === 'user'
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-white/10 text-white'
+                    ? 'bg-white text-black'
+                    : 'bg-black/10 text-white'
                 }`}
               >
                 {message.content}
@@ -113,10 +113,10 @@ export const FortuneTeller = () => {
           <Input
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 flex-1"
+            className="bg-black/10 border-white/20 text-white placeholder:text-white/50 flex-1"
             placeholder="Ask your question..."
           />
-          <Button type="submit" className="text-primary-foreground bg-primary hover:bg-primary/90">
+          <Button type="submit" className="bg-white text-black hover:bg-white/90">
             Ask
           </Button>
         </div>
