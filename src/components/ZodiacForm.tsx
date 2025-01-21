@@ -42,12 +42,14 @@ export const ZodiacForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-md">
       <div className="space-y-2">
-        <Label htmlFor="horoscopeSign" className="text-lg text-white">Select Your Horoscope Sign</Label>
+        <Label htmlFor="horoscopeSign" className="text-lg text-white">
+          Select Your Horoscope Sign
+        </Label>
         <Select required onValueChange={setHoroscopeSign}>
-          <SelectTrigger className="bg-white/10 border-white/20 text-white">
-            <SelectValue placeholder="Choose your horoscope sign" className="text-white" />
+          <SelectTrigger className="bg-black/10 border-white/20 text-white">
+            <SelectValue placeholder="Choose your horoscope sign" />
           </SelectTrigger>
-          <SelectContent className="bg-background border-white/20">
+          <SelectContent className="bg-black border-white/20">
             {horoscopeSigns.map((sign) => (
               <SelectItem 
                 key={sign} 
@@ -61,12 +63,14 @@ export const ZodiacForm = () => {
         </Select>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="chineseZodiac" className="text-lg text-white">Select Your Chinese Zodiac Sign</Label>
+        <Label htmlFor="chineseZodiac" className="text-lg text-white">
+          Select Your Chinese Zodiac Sign
+        </Label>
         <Select required onValueChange={setChineseZodiac}>
-          <SelectTrigger className="bg-white/10 border-white/20 text-white">
-            <SelectValue placeholder="Choose your Chinese zodiac sign" className="text-white" />
+          <SelectTrigger className="bg-black/10 border-white/20 text-white">
+            <SelectValue placeholder="Choose your Chinese zodiac sign" />
           </SelectTrigger>
-          <SelectContent className="bg-background border-white/20">
+          <SelectContent className="bg-black border-white/20">
             {chineseZodiacSigns.map((sign) => (
               <SelectItem 
                 key={sign} 
@@ -84,12 +88,15 @@ export const ZodiacForm = () => {
           type="button" 
           onClick={() => navigate(-1)}
           variant="link"
-          className="text-white"
+          className="text-white hover:text-white/80"
         >
           <ChevronLeft className="me-1 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
           Back
         </Button>
-        <Button type="submit" className="text-primary-foreground bg-primary hover:bg-primary/90">
+        <Button 
+          type="submit" 
+          className="bg-white text-black hover:bg-white/90"
+        >
           Save Profile
         </Button>
       </div>
