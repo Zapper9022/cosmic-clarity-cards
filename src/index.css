@@ -50,4 +50,13 @@
     font-family: 'Cinzel', serif;
     @apply text-white;
   }
+  input::placeholder {
+    @apply text-white/50;
+  }
+  select {
+    @apply text-white bg-white/10 border-white/20;
+  }
+  button {
+    @apply text-white;
+  }
 }

@@ -68,14 +68,18 @@ export const FortuneTeller = () => {
   return (
     <div className="space-y-8 w-full max-w-md">
       <div className="space-y-2">
-        <Label htmlFor="profile" className="text-lg">Select Your Profile</Label>
+        <Label htmlFor="profile" className="text-lg text-white">Select Your Profile</Label>
         <Select required onValueChange={setSelectedProfile}>
           <SelectTrigger className="bg-white/10 border-white/20 text-white">
-            <SelectValue placeholder="Choose your profile" />
+            <SelectValue placeholder="Choose your profile" className="text-white" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-background border-white/20">
             {profiles.map((profile, index) => (
-              <SelectItem key={index} value={index.toString()}>
+              <SelectItem 
+                key={index} 
+                value={index.toString()}
+                className="text-white hover:bg-white/10"
+              >
                 {profile.fullName}
               </SelectItem>
             ))}
@@ -93,7 +97,7 @@ export const FortuneTeller = () => {
               <div
                 className={`max-w-[80%] rounded-lg p-3 ${
                   message.type === 'user'
-                    ? 'bg-primary text-white ml-auto'
+                    ? 'bg-primary text-primary-foreground'
                     : 'bg-white/10 text-white'
                 }`}
               >
@@ -109,7 +113,7 @@ export const FortuneTeller = () => {
           <Input
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            className="bg-white/10 border-white/20 text-white flex-1"
+            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 flex-1"
             placeholder="Ask your question..."
           />
           <Button type="submit" className="text-primary-foreground bg-primary hover:bg-primary/90">

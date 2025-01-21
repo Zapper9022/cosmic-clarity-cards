@@ -33,7 +33,7 @@ const ProfilesPage = () => {
     <MysticalBackground>
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-2xl mx-auto text-center space-y-8">
-          <h1 className="text-4xl font-bold font-cinzel text-primary mb-8">
+          <h1 className="text-4xl font-bold font-cinzel text-white mb-8">
             Saved Profiles
           </h1>
           
@@ -52,9 +52,9 @@ const ProfilesPage = () => {
               {profiles.map((profile, index) => (
                 <div
                   key={index}
-                  className="p-6 rounded-lg bg-white/5 border border-white/10 space-y-4"
+                  className="p-6 rounded-lg bg-white/5 border border-white/20 space-y-4"
                 >
-                  <h3 className="text-xl font-cinzel text-primary">{profile.fullName}</h3>
+                  <h3 className="text-xl font-cinzel text-white">{profile.fullName}</h3>
                   <p className="text-white/90">Born: {new Date(profile.dateOfBirth).toLocaleDateString()}</p>
                   <p className="text-white/90">Zodiac: {profile.zodiacSign}</p>
                   <div className="space-x-4">
@@ -67,6 +67,7 @@ const ProfilesPage = () => {
                     <Button
                       onClick={() => deleteProfile(index)}
                       variant="destructive"
+                      className="text-white"
                     >
                       Delete
                     </Button>
