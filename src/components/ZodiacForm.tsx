@@ -41,7 +41,7 @@ export const ZodiacForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-md">
       <div className="space-y-2">
-        <Label htmlFor="horoscopeSign" className="text-lg">Select Your Horoscope Sign</Label>
+        <Label htmlFor="horoscopeSign" className="text-lg text-white">Select Your Horoscope Sign</Label>
         <Select required onValueChange={setHoroscopeSign}>
           <SelectTrigger className="bg-white/10 border-white/20 text-white">
             <SelectValue placeholder="Choose your horoscope sign" />
@@ -56,7 +56,7 @@ export const ZodiacForm = () => {
         </Select>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="chineseZodiac" className="text-lg">Select Your Chinese Zodiac Sign</Label>
+        <Label htmlFor="chineseZodiac" className="text-lg text-white">Select Your Chinese Zodiac Sign</Label>
         <Select required onValueChange={setChineseZodiac}>
           <SelectTrigger className="bg-white/10 border-white/20 text-white">
             <SelectValue placeholder="Choose your Chinese zodiac sign" />
@@ -74,9 +74,10 @@ export const ZodiacForm = () => {
         <Button 
           type="button" 
           onClick={() => navigate(-1)}
-          variant="outline"
-          className="border-white/20 text-white hover:bg-white/10"
+          variant="link"
+          className="text-white"
         >
+          <ChevronLeft className="me-1 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
           Back
         </Button>
         <Button type="submit" className="text-primary-foreground bg-primary hover:bg-primary/90">
