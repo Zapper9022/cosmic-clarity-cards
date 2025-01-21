@@ -45,11 +45,15 @@ export const ZodiacForm = () => {
         <Label htmlFor="horoscopeSign" className="text-lg text-white">Select Your Horoscope Sign</Label>
         <Select required onValueChange={setHoroscopeSign}>
           <SelectTrigger className="bg-white/10 border-white/20 text-white">
-            <SelectValue placeholder="Choose your horoscope sign" />
+            <SelectValue placeholder="Choose your horoscope sign" className="text-white" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-background border-white/20">
             {horoscopeSigns.map((sign) => (
-              <SelectItem key={sign} value={sign.toLowerCase()}>
+              <SelectItem 
+                key={sign} 
+                value={sign.toLowerCase()}
+                className="text-white hover:bg-white/10"
+              >
                 {sign}
               </SelectItem>
             ))}
@@ -60,11 +64,15 @@ export const ZodiacForm = () => {
         <Label htmlFor="chineseZodiac" className="text-lg text-white">Select Your Chinese Zodiac Sign</Label>
         <Select required onValueChange={setChineseZodiac}>
           <SelectTrigger className="bg-white/10 border-white/20 text-white">
-            <SelectValue placeholder="Choose your Chinese zodiac sign" />
+            <SelectValue placeholder="Choose your Chinese zodiac sign" className="text-white" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-background border-white/20">
             {chineseZodiacSigns.map((sign) => (
-              <SelectItem key={sign} value={sign.toLowerCase()}>
+              <SelectItem 
+                key={sign} 
+                value={sign.toLowerCase()}
+                className="text-white hover:bg-white/10"
+              >
                 {sign}
               </SelectItem>
             ))}
