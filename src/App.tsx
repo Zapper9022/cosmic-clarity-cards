@@ -9,24 +9,33 @@ import ZodiacPage from "./pages/ZodiacPage";
 import FortunePage from "./pages/FortunePage";
 import ProfilesPage from "./pages/ProfilesPage";
 
-const queryClient = new QueryClient();
+const App = () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 5 * 60 * 1000,
+        retry: false,
+      },
+    },
+  });
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/zodiac" element={<ZodiacPage />} />
-          <Route path="/fortune" element={<FortunePage />} />
-          <Route path="/profiles" element={<ProfilesPage />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/zodiac" element={<ZodiacPage />} />
+            <Route path="/fortune" element={<FortunePage />} />
+            <Route path="/profiles" element={<ProfilesPage />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
